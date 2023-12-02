@@ -1,38 +1,39 @@
 
 # Simple Flask App
 
-У цьому проєкті ми реалізували адресу 'api/v1/hello-world-{variant}' з HTTP статус кодом відповіді 200. Для цього ми використовували віртуальне середовище Python 3.9 та систему контролю залежностей requirements.txt.
+In this project, we implemented the address 'api/v1/hello-world-{variant}' with an HTTP response status code of 200. To do this, we used the Python 3.6 virtual environment and the requirements.txt dependency control system.
 
+## Requirements
 
-
-## Вимоги
-
- - [Python 3.9](https://www.python.org/downloads/release/python-390/)
+ - [Python 3.6](https://www.python.org/downloads/release/python-390/)
  - [virtualenv](https://virtualenv.pypa.io/en/latest/)
 
-## Завантаження проєкту
-Для того щоб завантажити даний проєкт на свій комп'ютер та потім ним скористатися, слід скористатися командою git clone.
+## Project deployment
+To download this project to your computer and then use it, use the git clone command.
 ```bash
   git clone git@github.com:AnastasiiaDunas/PP3.git
 ```
-Нам потрібно створити віртуальне середовище за допомогою команди та активувати віртуальне середовище.
-```bash
-  python -m virtualenv venv
-```
-```bash
-  venv\Scripts\activate
-```
-Після чого нам потрібно перейти до директорії проєкту в cmd чи PowerShell.
+After that, we need to navigate to the project directory in cmd or PowerShell.
 ```bash
   cd ...\...\...\venv
 ```
-Тепер ми можемо сміливо запускати наш проєкт.
+We need to activate the virtual environment.
 ```bash
-  python script.py
+  Scripts\activate
 ```
-## Приклад використання
-Далі ми можемо просто перейти за наступною адресою:
+Then we can install our requirements.
 ```bash
-  http://127.0.0.1:5000/api/v1/hello-world-10
+  cd..
 ```
-![App Screenshot](https://snipboard.io/WMNOQe.jpg)
+```bash
+  pip install -r requirements.txt
+```
+Now we can safely launch our project.
+```bash
+  python venv\script.py
+```
+## Example
+Then we can simply go to the following address:
+```bash
+  http://localhost:5000/api/v1/hello-world-10
+```
