@@ -29,7 +29,7 @@ class Userlist(Base):
 
 class Event(Base):
     __tablename__ = 'events'
-    __table_args__ = {'comment': 'Table storing event information', 'order_by': 'event_date DESC'}
+    __table_args__ = {'comment': 'Table storing event information'}
     
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String, unique=True)

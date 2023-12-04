@@ -1,39 +1,91 @@
 
-# Simple Flask App
+# Calendar API
 
-In this project, we implemented the address 'api/v1/hello-world-{variant}' with an HTTP response status code of 200. To do this, we used the Python 3.6 virtual environment and the requirements.txt dependency control system.
+## Description
+The Calendar API is a Django-based RESTful API designed for managing calendar events and invitations. It provides functionalities for user management, event creation, updating, deletion, and invitations.
 
-## Requirements
+## Installation
 
- - [Python 3.6](https://www.python.org/downloads/release/python-390/)
- - [virtualenv](https://virtualenv.pypa.io/en/latest/)
+### Prerequisites
+- Python 3.x
+- Django
+- Django REST Framework
+- Other dependencies listed in `requirements.txt`
 
-## Project deployment
-To download this project to your computer and then use it, use the git clone command.
+### Cloning the Repository
+To clone the repository from GitHub and set up the project on your local machine, follow these steps:
+1. Navigate to the main page of the repository on GitHub.
+2. Above the list of files, click the green button labeled "Code".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", click the clipboard icon. To clone using an SSH key, including a certificate issued by your organization's SSH certificate authority, click Use SSH, then click the clipboard icon. To clone a repository using GitHub CLI, click Use GitHub CLI, then click the clipboard icon.
+4. Open your terminal.
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type `git clone`, and then paste the URL you copied earlier.
+   ```
+   git clone git@github.com:AnastasiiaDunas/CalendarAPI.git
+   ```
+7. Press `Enter` to create your local clone.
+
+### Setting Up
+After cloning the repository, install the required packages:
 ```bash
-  git clone git@github.com:AnastasiiaDunas/PP3.git
+pip install -r requirements.txt
 ```
-After that, we need to navigate to the project directory in cmd or PowerShell.
+
+## Running the API
+To run the API server, navigate to the project directory and execute:
 ```bash
-  cd ...\...\...\venv
+python manage.py runserver
 ```
-We need to activate the virtual environment.
+
+## API Endpoints
+Below are the key API endpoints available:
+
+- User Signup
+  - **Method:** POST
+  - **Endpoint:** `/signup/`
+  - **Body:** `{"username": "your_username", "password": "your_password", "email": "your_email@example.com"}`
+
+- User Login
+  - **Method:** POST
+  - **Endpoint:** `/login/`
+  - **Body:** `{"username": "your_username", "password": "your_password"}`
+
+- Create Event
+  - **Method:** POST
+  - **Endpoint:** `/event/create/`
+  - **Body:** `{"title": "Event Title", "description": "Event Description", "date": "YYYY-MM-DD HH:MM"}`
+
+- Update Event
+  - **Method:** PUT
+  - **Endpoint:** `/event/update/{pk}/`
+  - **Body:** `{"title": "New Event Title", "description": "New Description", "date": "YYYY-MM-DD HH:MM"}`
+
+- Delete Event
+  - **Method:** DELETE
+  - **Endpoint:** `/event/delete/{pk}/`
+
+- Invite to Event
+  - **Method:** POST
+  - **Endpoint:** `/event/invite/`
+  - **Body:** `{"event_id": event_id, "invitee_id": user_id}`
+
+- View Created Events
+  - **Method:** GET
+  - **Endpoint:** `/events/created/`
+
+- View Events User is Invited To
+  - **Method:** GET
+  - **Endpoint:** `/events/invited/`
+
+- View Users Invited to an Event
+  - **Method:** GET
+  - **Endpoint:** `/event/invited-users/{event_id}/`
+
+## Swagger Documentation
+For a detailed overview of API endpoints, request parameters, and response formats, please refer to the Swagger documentation.
+
+## Testing
+Execute the following command to run tests:
 ```bash
-  Scripts\activate
-```
-Then we can install our requirements.
-```bash
-  cd..
-```
-```bash
-  pip install -r requirements.txt
-```
-Now we can safely launch our project.
-```bash
-  python venv\script.py
-```
-## Example
-Then we can simply go to the following address:
-```bash
-  http://localhost:5000/api/v1/hello-world-10
+python manage.py test
 ```
