@@ -1,97 +1,90 @@
-# CalendarAPI
+# Calendar API
 
-Welcome to the CalendarAPI! This Django REST Framework project provides functionality for managing events and user authentication.
+## Description
+The Calendar API is a Django-based RESTful API designed for managing calendar events and invitations. It provides functionalities for user management, event creation, updating, deletion, and invitations.
 
-## Prerequisites
+## Installation
 
-Before you begin, ensure you have the following software installed on your machine:
+### Prerequisites
+- Python 3.6 or newer
+- Django
+- Django REST Framework
+- Other dependencies listed in `requirements.txt`
 
-- Python (version 3.6 or later)
-- PostgreSQL
+### Cloning the Repository
+To clone the repository from GitHub and set up the project on your local machine, follow these steps:
+1. Navigate to the main page of the repository on GitHub.
+2. Above the list of files, click the green button labeled "Code".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", click the clipboard icon. To clone using an SSH key, including a certificate issued by your organization's SSH certificate authority, click Use SSH, then click the clipboard icon. To clone a repository using GitHub CLI, click Use GitHub CLI, then click the clipboard icon.
+4. Open your terminal.
+5. Change the current working directory to the location where you want the cloned directory.
+6. Type `git clone`, and then paste the URL you copied earlier.
+   ```
+   git clone git@github.com:AnastasiiaDunas/CalendarAPI.git
+   ```
+7. Press `Enter` to create your local clone.
 
-## Getting Started
+### Setting Up
+After cloning the repository, install the required packages:
+```bash
+pip install -r requirements.txt
+```
 
-1. **Clone the Repository:**
-
-    ```bash
-    git clone git@github.com:AnastasiiaDunas/CalendarAPI.git
-    ```
-
-2. **Navigate to the Project Directory:**
-
-    ```bash
-    cd CalendarAPI\calendarapi
-    ```
-
-3. **Create and Activate a Virtual Environment (Optional but Recommended):**
-
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
-
-4. **Install Dependencies:**
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-5. **Configure Database:**
-
-    - Create a PostgreSQL database.
-    - Update the database settings in `events/settings.py` with your database configuration.
-
-6. **Apply Migrations:**
-
-    ```bash
-    python manage.py migrate
-    ```
-
-7. **Run the Development Server:**
-
-    ```bash
-    python manage.py runserver
-    ```
-
-    The API should now be running at http://localhost:8000/.
+## Running the API
+To run the API server, navigate to the project directory and execute:
+```bash
+python manage.py runserver
+```
 
 ## API Endpoints
+Below are the key API endpoints available:
 
-Here are the main API endpoints provided by the Django Events API:
+- User Signup
+  - **Method:** POST
+  - **Endpoint:** `/signup/`
+  - **Body:** `{"username": "your_username", "password": "your_password", "email": "your_email@example.com"}`
 
-- **User Signup:**
-  - Endpoint: `/api/user/signup/`
-  - Method: `POST`
+- User Login
+  - **Method:** POST
+  - **Endpoint:** `/login/`
+  - **Body:** `{"username": "your_username", "password": "your_password"}`
 
-- **User Login:**
-  - Endpoint: `/api/user/login/`
-  - Method: `POST`
+- Create Event
+  - **Method:** POST
+  - **Endpoint:** `/event/create/`
+  - **Body:** `{"title": "Event Title", "description": "Event Description", "date": "YYYY-MM-DD HH:MM"}`
 
-- **Get User Invitations:**
-  - Endpoint: `/api/user/{token}/invitations/`
-  - Method: `GET`
+- Update Event
+  - **Method:** PUT
+  - **Endpoint:** `/event/update/{pk}/`
+  - **Body:** `{"title": "New Event Title", "description": "New Description", "date": "YYYY-MM-DD HH:MM"}`
 
-- **Create an Event:**
-  - Endpoint: `/api/events/{token}/create/`
-  - Method: `POST`
+- Delete Event
+  - **Method:** DELETE
+  - **Endpoint:** `/event/delete/{pk}/`
 
-- **Get User Events:**
-  - Endpoint: `/api/events/{token}/list/`
-  - Method: `GET`
+- Invite to Event
+  - **Method:** POST
+  - **Endpoint:** `/event/invite/`
+  - **Body:** `{"event_id": event_id, "invitee_id": user_id}`
 
-- **Update an Event:**
-  - Endpoint: `/api/events/{token}/{event_title}/update/`
-  - Method: `PUT`
+- View Created Events
+  - **Method:** GET
+  - **Endpoint:** `/events/created/`
 
-- **Delete an Event:**
-  - Endpoint: `/api/events/{token}/{event_title}/delete/`
-  - Method: `DELETE`
+- View Events User is Invited To
+  - **Method:** GET
+  - **Endpoint:** `/events/invited/`
 
-- **Invite a User to an Event:**
-  - Endpoint: `/api/events/{token}/{event_title}/invite/`
-  - Method: `POST`
+- View Users Invited to an Event
+  - **Method:** GET
+  - **Endpoint:** `/event/invited-users/{event_id}/`
 
-- **Get Users Invited to an Event:**
-  - Endpoint: `/api/events/{event_title}/users/`
-  - Method: `GET`
+## Swagger Documentation
+For a detailed overview of API endpoints, request parameters, and response formats, please refer to the Swagger documentation.
 
+## Testing
+Execute the following command to run tests:
+```bash
+python manage.py test
+```

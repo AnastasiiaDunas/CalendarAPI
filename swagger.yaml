@@ -1,0 +1,180 @@
+swagger: '2.0'
+info:
+  title: Calendar API
+  version: 1.0.0
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /signup/:
+    post:
+      summary: User Signup
+      operationId: userSignup
+      responses:
+        201:
+          description: User created successfully
+      parameters:
+        - in: body
+          name: user
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+              email:
+                type: string
+                format: email
+
+  /login/:
+    post:
+      summary: User Login
+      operationId: userLogin
+      responses:
+        200:
+          description: Login successful, tokens returned
+      parameters:
+        - in: body
+          name: login
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+
+  /event/create/:
+    post:
+      summary: Create Event
+      operationId: createEvent
+      responses:
+        201:
+          description: Event created successfully
+      parameters:
+        - in: body
+          name: event
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              date:
+                type: string
+                format: datetime
+
+  /event/update/{event_id}/:
+    put:
+      summary: Update Event
+      operationId: updateEvent
+      responses:
+        200:
+          description: Event updated successfully
+      parameters:
+        - name: event_id 
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: event
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              description:
+                type: string
+              date:
+                type: string
+                format: datetime
+
+  /event/delete/{event_id}/:
+    delete:
+      summary: Delete Event
+      operationId: deleteEvent
+      responses:
+        200:
+          description: Event deleted successfully
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+
+  /event/invite/:
+    post:
+      summary: Invite to Event
+      operationId: inviteToEvent
+      responses:
+        201:
+          description: User invited successfully
+      parameters:
+        - in: body
+          name: invitation
+          required: true
+          schema:
+            type: object
+            properties:
+              event_id:
+                type: integer
+              invitee_id:
+                type: integer
+
+  /events/created/:
+    get:
+      summary: View Created Events
+      operationId: viewCreatedEvents
+      responses:
+        200:
+          description: List of events created by the user
+      parameters:
+        - in: query
+          name: user_id
+          type: integer
+          required: true
+
+  /events/invited/:
+    get:
+      summary: View Events User Invited To
+      operationId: viewEventUserInvitedTo
+      responses:
+        200:
+          description: List of events user is invited to
+      parameters:
+        - in: query
+          name: user_id
+          type: integer
+          required: true
+
+  /event/invited-users/{event_id}/:
+    get:
+      summary: View Users Invited to Event
+      operationId: viewUsersInvitedToEvent
+      responses:
+        200:
+          description: List of users invited to a specific event
+      parameters:
+        - name: event_id
+          in: path
+          required: true
+          type: integer
+          format: int64
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+security:
+  - Bearer: []
+
