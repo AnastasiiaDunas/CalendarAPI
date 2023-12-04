@@ -1,4 +1,3 @@
-
 # Calendar API
 
 ## Description
@@ -7,7 +6,7 @@ The Calendar API is a Django-based RESTful API designed for managing calendar ev
 ## Installation
 
 ### Prerequisites
-- Python 3.x
+- Python 3.6 or newer
 - Django
 - Django REST Framework
 - Other dependencies listed in `requirements.txt`
