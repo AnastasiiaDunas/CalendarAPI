@@ -1,39 +1,97 @@
+# CalendarAPI
 
-# Simple Flask App
+Welcome to the CalendarAPI! This Django REST Framework project provides functionality for managing events and user authentication.
 
-In this project, we implemented the address 'api/v1/hello-world-{variant}' with an HTTP response status code of 200. To do this, we used the Python 3.6 virtual environment and the requirements.txt dependency control system.
+## Prerequisites
 
-## Requirements
+Before you begin, ensure you have the following software installed on your machine:
 
- - [Python 3.6](https://www.python.org/downloads/release/python-390/)
- - [virtualenv](https://virtualenv.pypa.io/en/latest/)
+- Python (version 3.6 or later)
+- PostgreSQL
 
-## Project deployment
-To download this project to your computer and then use it, use the git clone command.
-```bash
-  git clone git@github.com:AnastasiiaDunas/PP3.git
-```
-After that, we need to navigate to the project directory in cmd or PowerShell.
-```bash
-  cd ...\...\...\venv
-```
-We need to activate the virtual environment.
-```bash
-  Scripts\activate
-```
-Then we can install our requirements.
-```bash
-  cd..
-```
-```bash
-  pip install -r requirements.txt
-```
-Now we can safely launch our project.
-```bash
-  python venv\script.py
-```
-## Example
-Then we can simply go to the following address:
-```bash
-  http://localhost:5000/api/v1/hello-world-10
-```
+## Getting Started
+
+1. **Clone the Repository:**
+
+    ```bash
+    git clone git@github.com:AnastasiiaDunas/CalendarAPI.git
+    ```
+
+2. **Navigate to the Project Directory:**
+
+    ```bash
+    cd CalendarAPI\calendarapi
+    ```
+
+3. **Create and Activate a Virtual Environment (Optional but Recommended):**
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+4. **Install Dependencies:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+5. **Configure Database:**
+
+    - Create a PostgreSQL database.
+    - Update the database settings in `events/settings.py` with your database configuration.
+
+6. **Apply Migrations:**
+
+    ```bash
+    python manage.py migrate
+    ```
+
+7. **Run the Development Server:**
+
+    ```bash
+    python manage.py runserver
+    ```
+
+    The API should now be running at http://localhost:8000/.
+
+## API Endpoints
+
+Here are the main API endpoints provided by the Django Events API:
+
+- **User Signup:**
+  - Endpoint: `/api/user/signup/`
+  - Method: `POST`
+
+- **User Login:**
+  - Endpoint: `/api/user/login/`
+  - Method: `POST`
+
+- **Get User Invitations:**
+  - Endpoint: `/api/user/{token}/invitations/`
+  - Method: `GET`
+
+- **Create an Event:**
+  - Endpoint: `/api/events/{token}/create/`
+  - Method: `POST`
+
+- **Get User Events:**
+  - Endpoint: `/api/events/{token}/list/`
+  - Method: `GET`
+
+- **Update an Event:**
+  - Endpoint: `/api/events/{token}/{event_title}/update/`
+  - Method: `PUT`
+
+- **Delete an Event:**
+  - Endpoint: `/api/events/{token}/{event_title}/delete/`
+  - Method: `DELETE`
+
+- **Invite a User to an Event:**
+  - Endpoint: `/api/events/{token}/{event_title}/invite/`
+  - Method: `POST`
+
+- **Get Users Invited to an Event:**
+  - Endpoint: `/api/events/{event_title}/users/`
+  - Method: `GET`
+
